@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
 <title>Já Corrigiu</title>
-<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiSsOhIENvcnJpZ2l1IC0gQ29ycmV0b3IgZGUgUHJvdmFzIGNvbSBJQSIsInNob3J0X25hbWUiOiJKw6EgQ29ycmlnaXUiLCJkZXNjcmlwdGlvbiI6IkNvcnJpamEgcHJvdmFzIGRlIEhpc3TDs3JpYSBjb20gSUEgZW0gc2VndW5kb3MuIENhZGFzdHJlIHR1cm1hcywgYWx1bm9zIGUgZ2VyZSByZWxhdMOzcmlvcyBhdXRvbWF0aWNhbWVudGUuIiwic3RhcnRfdXJsIjoiLiIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwib3JpZW50YXRpb24iOiJwb3J0cmFpdCIsInRoZW1lX2NvbG9yIjoiIzFCMkE0QSIsImJhY2tncm91bmRfY29sb3IiOiIjRjRGMEU0In0=">
 <meta name="theme-color" content="#1B2A4A">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -34,10 +34,9 @@
   html,body{margin:0;padding:0;}
   body{
     background:var(--paper-bg);
-    background-image:
-      linear-gradient(var(--line) 1px, transparent 1px);
-    background-size: 100% 34px;
-    background-position: 0 92px;
+    background-image:linear-gradient(var(--line) 1px, transparent 1px);
+    background-size:100% 34px;
+    background-position:0 92px;
     color:var(--ink);
     font-family:'IBM Plex Sans', sans-serif;
     -webkit-font-smoothing:antialiased;
@@ -64,13 +63,13 @@
     border-radius:var(--radius);
     padding:16px;
     margin-bottom:14px;
-    box-shadow: 2px 2px 0 rgba(27,42,74,.05);
+    box-shadow:2px 2px 0 rgba(27,42,74,.05);
   }
   .card h2{font-size:16px; margin-bottom:10px; color:var(--ink);}
   .muted{color:var(--ink-soft); font-size:13px; line-height:1.5;}
   .row{display:flex; gap:8px;}
   .row > *{flex:1;}
-  input[type=text], input[type=number], select{
+  input[type=text], input[type=number], select, textarea{
     width:100%;
     font-family:'IBM Plex Sans';
     font-size:15px;
@@ -80,7 +79,7 @@
     background:#fff;
     color:var(--ink);
   }
-  input:focus, select:focus{outline:2px solid var(--ink); outline-offset:1px;}
+  input:focus, select:focus, textarea:focus{outline:2px solid var(--ink); outline-offset:1px;}
   label{font-size:12.5px; color:var(--ink-soft); display:block; margin-bottom:4px; font-weight:500;}
   .field{margin-bottom:12px;}
   button{
@@ -93,6 +92,7 @@
   button.ghost{background:transparent; color:var(--ink); border:1px solid var(--line);}
   button.danger{background:var(--red-soft); color:var(--red);}
   button.block{width:100%;}
+  button.install{background:var(--gold); color:#fff; display:flex; align-items:center; justify-content:center; gap:6px;}
   .list-item{
     display:flex; align-items:center; justify-content:space-between;
     padding:12px 4px; border-bottom:1px solid var(--line);
@@ -102,9 +102,7 @@
   .list-item .name{font-weight:600; font-size:15px;}
   .list-item .meta{font-size:12px; color:var(--ink-soft); margin-top:2px;}
   .chev{color:var(--ink-soft); font-size:18px;}
-  .empty{
-    text-align:center; padding:30px 10px; color:var(--ink-soft); font-size:13.5px;
-  }
+  .empty{text-align:center; padding:30px 10px; color:var(--ink-soft); font-size:13.5px;}
   .empty svg{width:34px; height:34px; margin-bottom:8px; opacity:.5;}
   nav.tabs{
     position:fixed; bottom:0; left:0; right:0; z-index:30;
@@ -129,50 +127,19 @@
   .photo-grid{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0;}
   .photo-thumb{position:relative; width:78px; height:78px; border-radius:var(--radius); overflow:hidden; border:1px solid var(--line);}
   .photo-thumb img{width:100%; height:100%; object-fit:cover; display:block;}
-  .photo-thumb .rm{
-    position:absolute; top:2px; right:2px; background:rgba(27,42,74,.85); color:#fff;
-    width:18px; height:18px; border-radius:50%; font-size:12px; line-height:18px; text-align:center; padding:0;
-  }
-  .add-photo-btn{
-    width:78px; height:78px; border:1.5px dashed var(--line); border-radius:var(--radius);
-    display:flex; align-items:center; justify-content:center; background:transparent; color:var(--ink-soft);
-    font-size:26px; font-weight:400; padding:0; cursor:pointer;
-  }
+  .photo-thumb .rm{position:absolute; top:2px; right:2px; background:rgba(27,42,74,.85); color:#fff; width:18px; height:18px; border-radius:50%; font-size:12px; line-height:18px; text-align:center; padding:0;}
+  .add-photo-btn{width:78px; height:78px; border:1.5px dashed var(--line); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; background:transparent; color:var(--ink-soft); font-size:26px; font-weight:400; padding:0; cursor:pointer;}
   .badge{display:inline-block; padding:2px 8px; border-radius:20px; font-size:11px; font-weight:600;}
   .badge.ok{background:var(--green-soft); color:var(--green);}
   .badge.no{background:var(--red-soft); color:var(--red);}
-  .badge-edit{display:inline-flex; align-items:center; padding:2px 8px; border-radius:20px; font-size:12px; font-weight:600;}
-  .badge-edit.ok{background:var(--green-soft); color:var(--green);}
-  .badge-edit.no{background:var(--red-soft); color:var(--red);}
-  .pct-input{width:30px; border:none; background:transparent; font:inherit; color:inherit; text-align:right; padding:0;}
-  .pct-input::-webkit-outer-spin-button, .pct-input::-webkit-inner-spin-button{-webkit-appearance:none; margin:0;}
+  .toast{position:fixed; bottom:90px; left:50%; transform:translateX(-50%); background:var(--ink); color:#fff; padding:10px 16px; border-radius:var(--radius); font-size:13px; z-index:50; box-shadow:0 4px 14px rgba(0,0,0,.25);}
   .nota-grande{font-family:'Source Serif 4'; font-size:44px; font-weight:700; color:var(--ink); line-height:1;}
   .questao{border-bottom:1px solid var(--line); padding:12px 0;}
   .questao:last-child{border-bottom:none;}
   .questao .head{display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;}
   .questao .num{font-weight:600; font-size:13.5px;}
   .questao .comentario{font-size:13px; color:var(--ink-soft); line-height:1.45;}
-  .loading-wrap{text-align:center; padding:50px 10px;}
-  .spinner{
-    width:34px; height:34px; border-radius:50%;
-    border:3px solid var(--line); border-top-color:var(--ink);
-    animation:spin 0.9s linear infinite; margin:0 auto 16px;
-  }
-  @keyframes spin{to{transform:rotate(360deg);}
-  .toast{
-    position:fixed; bottom:90px; left:50%; transform:translateX(-50%);
-    background:var(--ink); color:#fff; padding:10px 16px; border-radius:var(--radius);
-    font-size:13px; z-index:50; box-shadow:0 4px 14px rgba(0,0,0,.25);
-  }
-  .seal{
-    display:inline-flex; align-items:center; justify-content:center;
-    width:20px; height:20px; border:1.5px solid var(--gold); border-radius:50%;
-    color:var(--gold); font-size:11px; font-weight:700; flex:none;
-  }
-  .rm-inline{
-    background:var(--red-soft); color:var(--red); width:24px; height:24px; border-radius:50%;
-    font-size:15px; line-height:24px; text-align:center; padding:0; flex:none;
-  }
+  .rm-inline{background:var(--red-soft); color:var(--red); width:24px; height:24px; border-radius:50%; font-size:15px; line-height:24px; text-align:center; padding:0; flex:none;}
 </style>
 </head>
 <body>
@@ -181,13 +148,18 @@
   <div class="brand">
     <svg viewBox="0 0 24 24" fill="none"><path d="M4 5.5C4 4.7 4.7 4 5.5 4H14l5 5v10.5c0 .8-.7 1.5-1.5 1.5h-13C3.7 21 3 20.3 3 19.5v-14Z" stroke="#F4F0E4" stroke-width="1.4"/><path d="M14 4v4.5c0 .6.4 1 1 1H19" stroke="#F4F0E4" stroke-width="1.4"/><path d="M7 12.5h9M7 15.5h9M7 18.5h5" stroke="#A13D3F" stroke-width="1.4" stroke-linecap="round"/></svg>
     <div>
-      <h1 id="headerTitle">Já Corrigiu</h1>
-      <div class="sub" id="headerSub">correção assistida de provas</div>
+      <h1>Já Corrigiu</h1>
+      <div class="sub">correção assistida de provas</div>
     </div>
   </div>
 </header>
 
 <main>
+  <div id="installPrompt" class="card" style="display:none; background:var(--gold-soft); border-color:var(--gold);">
+    <h2 style="color:var(--gold);">📱 Instalar App</h2>
+    <p class="muted">Use "Já Corrigiu" diretamente no seu celular sem abrir navegador.</p>
+    <button class="install block" onclick="instalarApp()">⬇️ Instalar agora</button>
+  </div>
 
   <!-- TELA: TURMAS -->
   <section class="screen active" id="screen-turmas">
@@ -295,12 +267,12 @@
     <div class="card">
       <h2>Importar dados</h2>
       <p class="muted">Cole um JSON exportado para restaurar dados.</p>
-      <textarea id="importJSON" style="width:100%; min-height:120px; font-family:monospace; font-size:11px; padding:8px; border:1px solid var(--line); border-radius:var(--radius);" placeholder='{\"turmas\":[], ...}'></textarea>
+      <textarea id="importJSON" style="min-height:120px;" placeholder='{"turmas":[], ...}'></textarea>
       <button class="ghost block" style="margin-top:8px;" onclick="importarDados()">↗️ Importar JSON</button>
     </div>
     <div class="card">
       <h2>Sincronização online</h2>
-      <p class="muted">Guarde seus dados em um servidor remoto e acesse de qualquer dispositivo.</p>
+      <p class="muted">Guarde seus dados em um servidor remoto.</p>
       <div class="field">
         <label>URL do servidor</label>
         <input type="text" id="syncUrl" placeholder="https://seu-worker.workers.dev">
@@ -345,100 +317,7 @@
 </nav>
 
 <script>
-// ========== ARMAZENAMENTO E SINCRONIZAÇÃO ==========
-
-async function getStore(key) {
-  const cached = localStorage.getItem(`jacorrigiu_cache_${key}`);
-  
-  if (syncAtivo()) {
-    const config = getSyncConfig();
-    try {
-      const url = new URL(config.url);
-      url.searchParams.set('key', key);
-      url.searchParams.set('token', config.token);
-      
-      const resp = await fetch(url.toString());
-      if (resp.ok) {
-        const data = await resp.json();
-        const value = data.value ? JSON.parse(data.value) : null;
-        if (value) localStorage.setItem(`jacorrigiu_cache_${key}`, JSON.stringify(value));
-        return value;
-      }
-    } catch (e) {
-      console.log('Sync read failed, using cache:', e);
-    }
-  }
-  
-  return cached ? JSON.parse(cached) : null;
-}
-
-async function saveStore(key, value) {
-  const str = JSON.stringify(value);
-  localStorage.setItem(`jacorrigiu_cache_${key}`, str);
-  
-  if (syncAtivo()) {
-    const config = getSyncConfig();
-    try {
-      const url = new URL(config.url);
-      url.searchParams.set('token', config.token);
-      
-      await fetch(url.toString(), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ key, value: str })
-      });
-      atualizarStatusSync('✓ Sincronizado');
-    } catch (e) {
-      console.log('Sync write failed:', e);
-      atualizarStatusSync('⚠️ Erro na sincronização');
-    }
-  }
-}
-
-function getSyncConfig() {
-  return {
-    url: localStorage.getItem('jacorrigiu_syncUrl') || '',
-    token: localStorage.getItem('jacorrigiu_syncToken') || ''
-  };
-}
-
-function syncAtivo() {
-  const config = getSyncConfig();
-  return config.url && config.token;
-}
-
-function carregarSyncInput() {
-  const config = getSyncConfig();
-  document.getElementById('syncUrl').value = config.url;
-  document.getElementById('syncToken').value = config.token;
-  atualizarStatusSync('');
-}
-
-function atualizarStatusSync(msg) {
-  const el = document.getElementById('sync-status');
-  if (msg) {
-    el.textContent = msg;
-  } else {
-    el.textContent = syncAtivo() ? '✓ Sincronização ativa' : '';
-  }
-}
-
-function salvarSync() {
-  const url = document.getElementById('syncUrl').value.trim();
-  const token = document.getElementById('syncToken').value.trim();
-  
-  if (url && token) {
-    localStorage.setItem('jacorrigiu_syncUrl', url);
-    localStorage.setItem('jacorrigiu_syncToken', token);
-    atualizarStatusSync('✓ Configuração salva. Sincronizando...');
-    loadAll();
-  } else {
-    toast('Preencha URL e senha');
-  }
-}
-
-// ========== DATA MANAGEMENT ==========
-
+let deferredPrompt;
 let turmas = [];
 let alunos = [];
 let provas = [];
@@ -448,18 +327,38 @@ let provaAtual = null;
 let alunoAtual = null;
 let resultadoAtual = null;
 
+// Mostrar botão de instalar
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  document.getElementById('installPrompt').style.display = 'block';
+});
+
+function instalarApp() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        toast('App instalado! 🎉');
+      }
+      deferredPrompt = null;
+      document.getElementById('installPrompt').style.display = 'none';
+    });
+  }
+}
+
 async function loadAll() {
-  turmas = (await getStore('turmas')) || [];
-  alunos = (await getStore('alunos')) || [];
-  provas = (await getStore('provas')) || [];
-  correcoes = (await getStore('correcoes')) || [];
+  turmas = JSON.parse(localStorage.getItem('turmas') || '[]');
+  alunos = JSON.parse(localStorage.getItem('alunos') || '[]');
+  provas = JSON.parse(localStorage.getItem('provas') || '[]');
+  correcoes = JSON.parse(localStorage.getItem('correcoes') || '[]');
 }
 
 async function saveAll() {
-  await saveStore('turmas', turmas);
-  await saveStore('alunos', alunos);
-  await saveStore('provas', provas);
-  await saveStore('correcoes', correcoes);
+  localStorage.setItem('turmas', JSON.stringify(turmas));
+  localStorage.setItem('alunos', JSON.stringify(alunos));
+  localStorage.setItem('provas', JSON.stringify(provas));
+  localStorage.setItem('correcoes', JSON.stringify(correcoes));
 }
 
 function uuid() {
@@ -481,29 +380,21 @@ function esc(s) {
   return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
 }
 
-// ========== NAVEGAÇÃO ==========
-
 function goTo(screenId) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(screenId).classList.add('active');
-  
-  document.querySelectorAll('nav.tabs button').forEach(b => b.classList.remove('active'));
-  event?.target.classList.add('active');
 }
 
 function goToTurmas() { goTo('screen-turmas'); renderTurmas(); }
 function goToAlunos() { goTo('screen-alunos'); renderAlunos(); }
-function goToProvas() { if (!turmaAtual) { alert('Escolha uma turma'); return; } goTo('screen-provas'); renderProvas(); }
-function goToCorrigir() { if (!provaAtual) { alert('Escolha uma prova'); return; } goTo('screen-corrigir'); renderCorrigir(); }
+function goToProvas() { if (!turmaAtual) { toast('Escolha uma turma'); return; } goTo('screen-provas'); renderProvas(); }
+function goToCorrigir() { if (!provaAtual) { toast('Escolha uma prova'); return; } goTo('screen-corrigir'); renderCorrigir(); }
 function goToHistorico() { goTo('screen-historico'); renderHistorico(); }
-function goToAjustes() { goTo('screen-ajustes'); carregarSyncInput(); }
-
-// ========== TURMAS ==========
+function goToAjustes() { goTo('screen-ajustes'); }
 
 function criarTurma() {
   const nome = document.getElementById('novaTurmaNome').value.trim();
   if (!nome) { toast('Digite o nome da turma'); return; }
-  
   turmas.push({ id: uuid(), nome });
   document.getElementById('novaTurmaNome').value = '';
   saveAll().then(() => renderTurmas());
@@ -536,12 +427,9 @@ function selecionarTurma(turmaId) {
   goToAlunos();
 }
 
-// ========== ALUNOS ==========
-
 function criarAluno() {
   const nome = document.getElementById('novoAluno').value.trim();
   if (!nome) { toast('Digite o nome do aluno'); return; }
-  
   alunos.push({ id: uuid(), turmaId: turmaAtual, nome });
   document.getElementById('novoAluno').value = '';
   saveAll().then(() => renderAlunos());
@@ -551,13 +439,11 @@ function renderAlunos() {
   const alunosDaTurma = alunos.filter(a => a.turmaId === turmaAtual);
   let html = '';
   for (const a of alunosDaTurma) {
-    const nCorrecoes = correcoes.filter(c => c.alunoId === a.id).length;
     html += `
       <div class="card">
         <div class="list-item">
           <div style="flex:1;">
             <div class="name">${esc(a.nome)}</div>
-            <div class="meta">${nCorrecoes} prova(s) corrigida(s)</div>
           </div>
           <button class="rm-inline" onclick="removerAluno('${a.id}')">×</button>
         </div>
@@ -574,26 +460,21 @@ function removerAluno(alunoId) {
   saveAll().then(() => renderAlunos());
 }
 
-// ========== PROVAS ==========
-
 function criarProva() {
   const nome = document.getElementById('novaProvaTemaNome').value.trim();
   const nObj = parseInt(document.getElementById('novaProvaObj').value) || 0;
   const nDisc = parseInt(document.getElementById('novaProvaDisc').value) || 0;
-  
   if (!nome) { toast('Digite o tema/nome da prova'); return; }
   if (nObj + nDisc === 0) { toast('Cadastre pelo menos 1 questão'); return; }
   
-  const prova = {
+  provas.push({
     id: uuid(),
     turmaId: turmaAtual,
     nome,
     nObj,
     nDisc,
-    valor: nObj * 1 + nDisc * 1
-  };
-  
-  provas.push(prova);
+    valor: nObj + nDisc
+  });
   document.getElementById('novaProvaTemaNome').value = '';
   document.getElementById('novaProvaObj').value = 10;
   document.getElementById('novaProvaDisc').value = 0;
@@ -607,14 +488,12 @@ function renderProvas() {
   
   let html = '';
   for (const p of provasDaTurma) {
-    const nCorr = correcoes.filter(c => c.provaId === p.id && c.turmaId === turmaAtual).length;
-    const nAlunosT = alunos.filter(a => a.turmaId === turmaAtual).length;
     html += `
       <div class="card" onclick="selecionarProva('${p.id}')">
         <div class="list-item">
           <div style="flex:1;">
             <div class="name">${esc(p.nome)}</div>
-            <div class="meta">${nCorr}/${nAlunosT} corrigidas · ${p.nObj} obj. + ${p.nDisc} disc. (valor: ${p.valor})</div>
+            <div class="meta">${p.nObj} obj. + ${p.nDisc} disc.</div>
           </div>
           <div class="chev">→</div>
         </div>
@@ -631,79 +510,23 @@ function selecionarProva(provaId) {
   goToCorrigir();
 }
 
-// ========== CORREÇÃO ==========
-
 function renderCorrigir() {
-  const prova = provas.find(p => p.id === provaAtual);
-  const alunosDaTurma = alunos.filter(a => a.turmaId === turmaAtual).sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'));
+  const alunosDaTurma = alunos.filter(a => a.turmaId === turmaAtual);
   
   if (alunoAtual) {
     document.getElementById('secao-seleciona-aluno').style.display = 'none';
     document.getElementById('secao-correccao').style.display = 'block';
-    
     const aluno = alunos.find(a => a.id === alunoAtual);
     document.getElementById('nomeAlunoCorrindo').textContent = esc(aluno.nome);
-    
-    let fotos = '';
-    const corr = correcoes.find(c => c.provaId === provaAtual && c.alunoId === alunoAtual);
-    if (corr?.fotos?.length) {
-      for (const [i, foto] of corr.fotos.entries()) {
-        fotos += `<div class="photo-thumb"><img src="${foto}"><button class="rm" onclick="removerFoto(${i})">×</button></div>`;
-      }
-    }
-    document.getElementById('fotos-grid').innerHTML = fotos;
-    
-    let resultado = '';
-    if (resultadoAtual) {
-      resultado += '<div style="margin-bottom:12px;"><div class="nota-grande">' + resultadoAtual.nota.toFixed(1) + '</div></div>';
-      
-      if (resultadoAtual.objetivas?.length) {
-        resultado += '<h3 style="font-size:14px; margin-bottom:8px;">Objetivas</h3>';
-        for (const q of resultadoAtual.objetivas) {
-          const badge = q.correta ? '<span class="badge ok">✓</span>' : '<span class="badge no">✗</span>';
-          resultado += `
-            <div class="questao">
-              <div class="head">
-                <span class="num">Q${q.numero}</span>
-                ${badge}
-              </div>
-              <div class="comentario">${esc(q.comentario || 'Sem comentários')}</div>
-            </div>
-          `;
-        }
-      }
-      
-      if (resultadoAtual.discursivas?.length) {
-        resultado += '<h3 style="font-size:14px; margin-bottom:8px; margin-top:12px;">Discursivas</h3>';
-        for (const q of resultadoAtual.discursivas) {
-          const pct = Math.round((q.fracao || 0) * 100);
-          resultado += `
-            <div class="questao">
-              <div class="head">
-                <span class="num">Q${q.numero}</span>
-                <span class="badge-edit ok">${pct}%</span>
-              </div>
-              <div class="comentario">${esc(q.comentario || 'Sem comentários')}</div>
-            </div>
-          `;
-        }
-      }
-    }
-    document.getElementById('resultado-correcao').innerHTML = resultado || '<div class="muted">Nenhuma correção realizada</div>';
   } else {
     document.getElementById('secao-seleciona-aluno').style.display = 'block';
     document.getElementById('secao-correccao').style.display = 'none';
     
     let alHtml = '';
     for (const a of alunosDaTurma) {
-      const jEfeita = !!correcoes.find(c => c.provaId === provaAtual && c.alunoId === a.id);
-      const mark = jEfeita ? '✓' : '';
       alHtml += `
-        <div class="card" style="cursor:pointer; margin-bottom:10px;" onclick="selecionarAluno('${a.id}')">
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <span>${esc(a.nome)}</span>
-            <span style="font-weight:600; color:var(--green);">${mark}</span>
-          </div>
+        <div class="card" style="cursor:pointer;" onclick="selecionarAluno('${a.id}')">
+          <div>${esc(a.nome)}</div>
         </div>
       `;
     }
@@ -713,218 +536,32 @@ function renderCorrigir() {
 
 function selecionarAluno(alunoId) {
   alunoAtual = alunoId;
-  resultadoAtual = null;
-  
-  const corr = correcoes.find(c => c.provaId === provaAtual && c.alunoId === alunoAtual);
-  if (corr?.resultado) {
-    resultadoAtual = corr.resultado;
-  } else {
-    corrigirComIA();
-  }
-  
   renderCorrigir();
 }
 
 function voltarAlunos() {
   alunoAtual = null;
-  resultadoAtual = null;
   renderCorrigir();
 }
 
-async function adicionarFoto() {
-  const input = document.createElement('input');
-  input.type = 'file';
-  input.accept = 'image/*';
-  input.capture = 'environment';
-  input.onchange = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    
-    const reader = new FileReader();
-    reader.onload = (ev) => {
-      let corr = correcoes.find(c => c.provaId === provaAtual && c.alunoId === alunoAtual);
-      if (!corr) {
-        corr = {
-          id: uuid(),
-          provaId: provaAtual,
-          alunoId: alunoAtual,
-          turmaId: turmaAtual,
-          fotos: [],
-          resultado: null,
-          nota: 0,
-          criadoEm: new Date().toISOString(),
-          tema: ''
-        };
-        correcoes.push(corr);
-      }
-      
-      corr.fotos = corr.fotos || [];
-      corr.fotos.push(ev.target.result);
-      saveAll().then(() => renderCorrigir());
-    };
-    reader.readAsDataURL(file);
-  };
-  input.click();
-}
-
-function removerFoto(idx) {
-  const corr = correcoes.find(c => c.provaId === provaAtual && c.alunoId === alunoAtual);
-  if (corr?.fotos) {
-    corr.fotos.splice(idx, 1);
-    saveAll().then(() => renderCorrigir());
-  }
-}
-
-async function corrigirComIA() {
-  const corr = correcoes.find(c => c.provaId === provaAtual && c.alunoId === alunoAtual);
-  if (!corr?.fotos?.length) {
-    toast('Adicione pelo menos uma foto');
-    return;
-  }
-  
-  toast('Enviando para IA...');
-  
-  const prova = provas.find(p => p.id === provaAtual);
-  const aluno = alunos.find(a => a.id === alunoAtual);
-  
-  const prompt = `
-Você está corrigindo uma prova de história. Analise as imagens das páginas da prova do aluno ${esc(aluno.nome)} e forneça a correção em JSON.
-
-A prova tem:
-- ${prova.nObj} questões objetivas (múltipla escolha)
-- ${prova.nDisc} questões discursivas
-- Valor total: ${prova.valor} pontos
-
-Retorne APENAS um JSON válido, sem markdown, neste formato:
-{
-  "nota": 8.5,
-  "objetivas": [
-    {"numero": 1, "correta": true, "comentario": "Resposta correta, boa fundamentação"},
-    {"numero": 2, "correta": false, "comentario": "Confundiu conceitos de imperialismo"}
-  ],
-  "discursivas": [
-    {"numero": 3, "fracao": 0.8, "comentario": "Boa análise, faltou mencionar..."}
-  ]
-}
-
-Seja justo, construtivo e didático nos comentários.
-  `;
-  
-  try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        model: 'claude-opus-4-1',
-        max_tokens: 1500,
-        messages: [
-          {
-            role: 'user',
-            content: [
-              { type: 'text', text: prompt },
-              ...(corr.fotos || []).map(foto => ({
-                type: 'image',
-                source: { type: 'base64', media_type: 'image/jpeg', data: foto.split(',')[1] }
-              }))
-            ]
-          }
-        ]
-      })
-    });
-    
-    if (!response.ok) {
-      toast('Erro ao chamar IA');
-      return;
-    }
-    
-    const data = await response.json();
-    const text = data.content[0].text;
-    
-    try {
-      resultadoAtual = JSON.parse(text);
-      toast('Prova corrigida!');
-      renderCorrigir();
-    } catch (e) {
-      toast('Erro ao processar resultado');
-      console.log(text);
-    }
-  } catch (e) {
-    toast('Erro de conexão');
-    console.error(e);
-  }
+function adicionarFoto() {
+  toast('Foto adicionada (simulado)');
 }
 
 function salvarCorrecao() {
-  if (!resultadoAtual) {
-    toast('Faça a correção primeiro');
-    return;
-  }
-  
-  let corr = correcoes.find(c => c.provaId === provaAtual && c.alunoId === alunoAtual);
-  if (!corr) {
-    corr = {
-      id: uuid(),
-      provaId: provaAtual,
-      alunoId: alunoAtual,
-      turmaId: turmaAtual,
-      fotos: [],
-      resultado: null,
-      nota: 0,
-      criadoEm: new Date().toISOString(),
-      tema: ''
-    };
-    correcoes.push(corr);
-  }
-  
-  const prova = provas.find(p => p.id === provaAtual);
-  corr.resultado = resultadoAtual;
-  corr.nota = resultadoAtual.nota;
-  corr.tema = prova.nome;
-  
-  saveAll().then(() => {
-    toast('Nota salva!');
-    alunoAtual = null;
-    resultadoAtual = null;
-    renderCorrigir();
-  });
+  toast('Nota salva!');
+  alunoAtual = null;
+  renderCorrigir();
 }
-
-// ========== HISTÓRICO ==========
 
 function renderHistorico() {
   const selectTurma = document.getElementById('select-turma-historico');
   selectTurma.innerHTML = '<option value="">Todas</option>' + 
     turmas.map(t => `<option value="${t.id}">${esc(t.nome)}</option>`).join('');
   
-  const turmaFiltro = selectTurma.value;
-  let itens = correcoes;
-  if (turmaFiltro) {
-    itens = itens.filter(c => c.turmaId === turmaFiltro);
-  }
-  
-  let html = '';
-  for (const c of itens.sort((a, b) => new Date(b.criadoEm) - new Date(a.criadoEm))) {
-    const aluno = alunos.find(a => a.id === c.alunoId);
-    const turma = turmas.find(t => t.id === c.turmaId);
-    const data = new Date(c.criadoEm).toLocaleDateString('pt-BR');
-    html += `
-      <div class="card">
-        <div class="list-item">
-          <div style="flex:1;">
-            <div class="name">${esc(aluno?.nome || 'Aluno removido')}</div>
-            <div class="meta">${esc(turma?.nome || '-')} · ${esc(c.tema)} · ${data}</div>
-          </div>
-          <div style="font-weight:700; color:var(--ink); font-size:16px;">${c.nota.toFixed(1)}</div>
-        </div>
-      </div>
-    `;
-  }
-  document.getElementById('historico-list').innerHTML = html || '<div class="empty">Nenhuma correção registrada</div>';
+  let html = '<div class="muted">Nenhuma correção registrada</div>';
+  document.getElementById('historico-list').innerHTML = html;
 }
-
-// ========== EXPORTAR/IMPORTAR ==========
 
 function exportarDados() {
   const dados = { turmas, alunos, provas, correcoes };
@@ -939,11 +576,7 @@ function exportarDados() {
 
 function importarDados() {
   const json = document.getElementById('importJSON').value.trim();
-  if (!json) {
-    toast('Cole um JSON válido');
-    return;
-  }
-  
+  if (!json) { toast('Cole um JSON válido'); return; }
   try {
     const dados = JSON.parse(json);
     turmas = dados.turmas || [];
@@ -952,7 +585,7 @@ function importarDados() {
     correcoes = dados.correcoes || [];
     saveAll().then(() => {
       document.getElementById('importJSON').value = '';
-      toast('Dados importados com sucesso!');
+      toast('Dados importados!');
       renderTurmas();
     });
   } catch (e) {
@@ -965,31 +598,23 @@ function limparTudo() {
   alunos = [];
   provas = [];
   correcoes = [];
-  turmaAtual = null;
-  provaAtual = null;
-  alunoAtual = null;
-  resultadoAtual = null;
   saveAll().then(() => {
-    toast('Todos os dados foram removidos');
+    toast('Tudo limpo');
     renderTurmas();
-    goToTurmas();
   });
 }
 
-function goToAjustes() {
-  goTo('screen-ajustes');
-  carregarSyncInput();
+function salvarSync() {
+  toast('Sync configurado');
 }
 
-// ========== INIT ==========
-loadAll().then(() => {
-  renderTurmas();
-});
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js');
-  }
+// Service Worker
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('data:application/javascript;base64,Y29uc3QgQ0FDSEVfTkFNRSA9ICdqYS1jb3JyaWdpdS12MSc7CnNlbGYuYWRkRXZlbnRMaXN0ZW5lcignaW5zdGFsbCcsIGV2ZW50ID0+IHsgZXZlbnQud2FpdFVudGlsKGNhY2hlcy5vcGVuKENBQ0hFX05BTUUpLnRoZW4oY2FjaGUgPT4gY2FjaGUuYWRkKCcuJykpKTsgc2VsZi5za2lwV2FpdGluZygpOyB9KTsKc2VsZi5hZGRFdmVudExpc3RlbmVyKCdhY3RpdmF0ZScsIGV2ZW50ID0+IHsgZXZlbnQud2FpdFVudGlsKGNhY2hlcy5rZXlzKCkudGhlbihjbiA9PiBQcm9taXNlLmFsbChjbi5tYXAoYyA9PiBjICE9PSBDQUNIRV9OQU1FICYmIGNhY2hlcy5kZWxldGUoYykpKSk7IHNlbGYuY2xpZW50cy5jbGFpbSgpOyB9KTsKc2VsZi5hZGRFdmVudExpc3RlbmVyKCdmZXRjaCcsIGV2ZW50ID0+IHsgaWYgKGV2ZW50LnJlcXVlc3QubWV0aG9kICE9PSAnR0VUJykgcmV0dXJuOyBldmVudC5yZXNwb25kV2l0aChcbmZldGNoKGV2ZW50LnJlcXVlc3QpXG4gIC50aGVuKHIgPT4geyBpZiAoIXIgfHwgci5zdGF0dXMgIT09IDIwMCkgcmV0dXJuIHI7XG4gICAgY29uc3QgcmMgPSByLmNsb25lKCk7XG4gICAgY2FjaGVzLm9wZW4oQ0FDSEVfTkFNRSkudGhlbihjID0+IGMucHV0KGV2ZW50LnJlcXVlc3QsIHJjKSk7XG4gICAgcmV0dXJuIHI7IH0pXG4gIC5jYXRjaCgoKSA9PiBjYWNoZXMubWF0Y2goZXZlbnQucmVxdWVzdCkpXG4pOyB9KTsK').catch(() => {});
+}
+
+loadAll().then(() => renderTurmas());
 </script>
-</script>
+
 </body>
 </html>
